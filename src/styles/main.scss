@@ -1,0 +1,24 @@
+@import './_main/_colors';
+@import './_main/_fonts';
+@import './_main/_reset';
+@import './_main/_style';
+
+#nav {
+    background-color: $blue;
+}
+
+.page-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: {
+        right: 15px;
+        left: 15px;
+    }
+    box-sizing: border-box;
+}
+
+.position-relative {
+    position: relative;
+}
+
