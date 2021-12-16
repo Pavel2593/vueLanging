@@ -1,14 +1,14 @@
 <template>
     <div class="input__wrapper">
         <span
-        v-if="lableText || error.text"
-        :class="[{ 'input__lable-error': error['enabled'] }, 'input__lable']">
-        {{(error.text) ? error.text : lableText}}
+        v-if="lableText || postErrorText"
+        :class="[{ 'input__lable-error': postErrorText }, 'input__lable']">
+        {{(postErrorText) ? postErrorText : lableText}}
         </span>
         <input
         type="text"
         placeholder="example@mail.ru"
-        :class="[{ 'input-error': error['enabled'] }, 'input']"
+        :class="[{ 'input-error': postErrorText }, 'input']"
         :value="value"
         @input="updateInput"
         >
@@ -18,14 +18,6 @@
 <script>
 export default {
     name: 'my-input-email',
-    data() {
-        return {
-            error: {
-                enabled: false,
-                text: ''
-            }
-        }
-    },
     props: {
         lableText: String,
         value: String,
@@ -61,17 +53,6 @@ export default {
             this.error = resetError;
         }
     },
-    watch: {
-        postErrorText(newValue) {
-            if (newValue != '') {
-                const newError = {
-                    enabled: true,
-                    text: newValue
-                }
-                this.error = newError;
-            }
-        }
-    }
 }
 </script>
 

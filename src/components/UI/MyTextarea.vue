@@ -1,15 +1,15 @@
 <template>
     <div class="textarea__wrapper">
         <span
-        v-if="lableText || error.text"
-        :class="[{ 'textarea__lable-error': error['enabled'] }, 'textarea__lable']">
-        {{(error.text) ? error.text : lableText}}
+        v-if="lableText || postErrorText"
+        :class="[{ 'textarea__lable-error': postErrorText }, 'textarea__lable']">
+        {{(postErrorText) ? postErrorText : lableText}}
         </span>
         <textarea
         type="text"
         placeholder="Комментарии"
         v-bind="$attrs"
-        :class="[{ 'textarea-error': error['enabled'] }, 'textarea']"
+        :class="[{ 'textarea-error': postErrorText }, 'textarea']"
         :value="value"
         @input="updateTextarea"
         ></textarea>
@@ -19,14 +19,6 @@
 <script>
 export default {
     name: 'my-textarea',
-    data() {
-        return {
-            error: {
-                enabled: false,
-                text: ''
-            }
-        }
-    },
     props: {
         lableText: String,
         value: [String],
@@ -46,17 +38,6 @@ export default {
             this.error = resetError;
         }
     },
-    watch: {
-        postErrorText(newValue) {
-            if (newValue != '') {
-                const newError = {
-                    enabled: true,
-                    text: newValue
-                }
-                this.error = newError;
-            }
-        }
-    }
 }
 </script>
 
